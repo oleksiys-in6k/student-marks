@@ -9,11 +9,43 @@ import java.util.List;
 public class Course {
 
     @Id
-    @Column(name = "ID")
-    @GeneratedValue
+    @Column(name = "course_id")
+
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String title;
     private float mark;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    public Course(String title, float mark) {
+        this.title = title;
+        this.setMark(mark);
+    }
+
+    public Course(String title, float mark, Student student) {
+        this.title = title;
+        this.setMark(mark);
+    }
+
+
+
+    public Course() {
+    }
+
+    public void setMark(float mark) {
+        this.mark = mark;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public Float getMark() {
         return mark;

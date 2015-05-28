@@ -1,36 +1,50 @@
 package studentmarks.Entitys;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import java.util.List;
-
-
 
 @Entity
 @Table(name = "student")
 public class Student {
 
     @Id
-    @Column(name = "ID")
-    @GeneratedValue
-//    @OneToMany
+    @Column(name = "student_id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-
-    @Column(name = "FIRST_NAME")
     private String firstName;
-
-    @Column(name = "LAST_NAME")
     private String lastName;
 
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
-//
-//    public void setCourse(List<Course> students) {
-//        this.courses = students;
-//    }
+    private double avgMark;
 
-//    private List<Course> courses;
+    public Student(String firstName, String lastName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
 
+    public Student() {
+    }
+
+    @Formula("(select avg(e.mark) from course e where e.student_id = idStudent)")
+    public double getAvgMark() {
+        return avgMark;
+    }
+
+    public void setAvgMark(double avgMark) {
+        this.avgMark = avgMark;
+    }
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Course> courses;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourse(List<Course> students) {
+        this.courses = students;
+    }
 
     public int getId() {
         return id;
