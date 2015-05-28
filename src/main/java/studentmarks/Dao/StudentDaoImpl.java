@@ -1,12 +1,13 @@
-package studentmarks;
+package studentmarks.Dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import studentmarks.Entitys.Course;
 
 import java.util.List;
 
-public class CourseDaoImpl implements CourseDao {
+public class StudentDaoImpl implements UniversityDao {
 
     private static final SessionFactory sessionFactory;
 
@@ -23,10 +24,10 @@ public class CourseDaoImpl implements CourseDao {
     }
 
     @Override
-    public void create(List listCourses) {
+    public void create(List listStudents) {
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        for (Object course : listCourses) {
+        for (Object course : listStudents) {
             session.save(course);
         }
 
@@ -35,7 +36,7 @@ public class CourseDaoImpl implements CourseDao {
 
     public List findAll() {
         Session session = sessionFactory.openSession();
-        List<Course> list = session.createQuery("From Course").list();
+        List<Course> list = session.createQuery("From Student").list();
         return list;
     }
 }

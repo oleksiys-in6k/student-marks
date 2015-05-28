@@ -1,10 +1,11 @@
-package studentmarks;
+package studentmarks.Service;
+
+import studentmarks.Entitys.Course;
+import studentmarks.Entitys.Student;
 
 import java.util.List;
 
-/**
- * Created by employee on 5/27/15.
- */
 public interface CourseService {
     public abstract void processCourse(List<Course> courses);
+
 }

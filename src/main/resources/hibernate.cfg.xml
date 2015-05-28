@@ -22,6 +22,7 @@
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
-        <mapping class="studentmarks.Course" />
+        <mapping class="studentmarks.Entitys.Course" />
+        <mapping class="studentmarks.Entitys.Student" />
     </session-factory>
 </hibernate-configuration>

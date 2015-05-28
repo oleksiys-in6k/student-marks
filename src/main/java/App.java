@@ -1,25 +1,29 @@
-import studentmarks.Course;
-import studentmarks.CourseService;
-import studentmarks.CourseServiceImpl;
+import studentmarks.Entitys.Course;
+import studentmarks.Entitys.Student;
+import studentmarks.Service.StudentService;
+import studentmarks.Service.StudentServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        List<Course> courses = new ArrayList<Course>(10);
+        List<Student> students = new ArrayList<Student>();
+        List<Course> courses = new ArrayList<Course>();
 
-        Course c1 = new Course();
-        c1.setName("John");
-        c1.setCourse("Java");
-        courses.add(c1);
+        //ToDo
 
-        Course c2 = new Course();
-        c2.setName("Peter");
-        c2.setCourse("Hibernate");
-        courses.add(c2);
+        Student student = new Student();
+        student.setFirstName("FirstName");
+        student.setLastName("lastName");
+        students.add(student);
 
-        CourseService service = new CourseServiceImpl(); // tightly coupled
-        service.processCourse(courses);
+
+        StudentService studentService = new StudentServiceImpl();
+        studentService.processStudent(students);
+
+//        CourseService courseService = new CourseServiceImpl();
+//        courseService.processCourse(courses);
+
     }
 }
